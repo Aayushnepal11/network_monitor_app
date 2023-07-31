@@ -1,0 +1,72 @@
+body{
+    background-color: #1C3EB9;
+}
+
+.navbar-brand{
+    display: flex;
+    flex: .5;
+    img{
+        height: 12vh;
+    }
+}
+
+.navbar-nav{
+    display: flex;
+    flex: 2;
+    justify-content: space-between;
+    .nav-link{
+        color: #fff;
+        font-size: 20px;
+        &:hover{
+            background-color: #2A993C;
+        }
+    }
+    .active{
+        background-color: #2A993C;
+    }
+}
+    
+
+
+.myImage{
+   &:hover{
+    cursor: pointer;
+    animation: 3s ease-in round_rotate infinite;
+   }
+}
+
+@keyframes round_rotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.banner-text{
+    margin-top: 40px;
+    .text-info{
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+        font-size: 32px;
+    }
+}
+
+.button-container{
+    margin-top: 30px;
+    .custom-btn{
+        padding: 20px 5px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #fc3b00ec;
+        font-size: 22px;
+        font-family: 'Courier New', Courier, monospace;
+        text-align: center;
+        transition: 0.5s ease-out;
+        &:hover{
+            cursor: pointer;
+            background-color: #FC3C00;
+        }
+    }
+}

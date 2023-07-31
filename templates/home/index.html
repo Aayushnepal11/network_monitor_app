@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    {% include 'includes/nav.html' %}
+{% endblock header %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{% static 'chart/pie.png' %}" class="myImage" alt="Pie Chart">
+            </div>
+            <div class="col-md-6">
+                <video id="myVideo" class="img-thumbnail" controls autoplay loop>
+                    <source src="{% static 'chart/loop_network.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+            </div>
+        </div>
+        <div class="row justify-content-center banner-text">
+            <div class="col-md-8">
+                <h3 class="text-white text-info">&quot;Scan and Generate The Report of your Network and Devices.&quot;</h3>
+            </div>
+        </div>
+        <div class="row justify-content-center button-container">
+            <div class="col-md-3">
+                <a class="custom-btn" href="">Request A Demo</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

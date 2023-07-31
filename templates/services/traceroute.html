@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h5 class="display-6 text-white text-center">TraceRoute Data:</h5>
+        </div>
+    </div>
+    <div class="row">
+        {% for host_url in target_host %}
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <h5 class="card_title">{{host_url}}</h5>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        {% for hop in results %}
+            <div class="col-md-5">
+                <p class="text-white">{{ hop }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

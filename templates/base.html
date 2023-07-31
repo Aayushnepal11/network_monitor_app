@@ -1,0 +1,38 @@
+{% load static %}
+{% load bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% if title %}
+            {{title}}
+            {% else %}
+                Network_Monitor_App::Home
+        {% endif %}
+    </title>
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'home/sass/style.css' %}">
+    <style>
+        .form-label{
+            font-size: 24px;
+            color: #fff;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    {% block header %}
+    
+    {% endblock header %}
+
+    {% block content %}{% endblock content %}
+    
+    {% bootstrap_javascript %}
+    <script src="{% static 'home/js/video.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    
+</body>
+</html>

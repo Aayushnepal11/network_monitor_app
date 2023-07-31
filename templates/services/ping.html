@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    {% include 'includes/nav.html' %}
+{% endblock header %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 m-auto">
+            <h4 class="display-6 text-white">Test Host Availability</h4>
+        </div>
+        {% for url,time in response_time.items %}
+        <div class="col-md-5">
+            <div class="card mb-2">
+                <div  class="card-body">
+                    <h5 class="card-title">Host: {{url}}</h5>
+                    {% if response_time is not None %}
+                        <p>Response Time: {{ time | floatformat:3 }} ms</p>
+                    {% else %}
+                        <p>Ping request failed or timed out.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

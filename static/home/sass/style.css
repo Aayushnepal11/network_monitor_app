@@ -1,0 +1,67 @@
+body {
+  background-color: #1C3EB9;
+}
+
+.navbar-brand {
+  display: flex;
+  flex: 0.5;
+}
+.navbar-brand img {
+  height: 12vh;
+}
+
+.navbar-nav {
+  display: flex;
+  flex: 2;
+  justify-content: space-between;
+}
+.navbar-nav .nav-link {
+  color: #fff;
+  font-size: 20px;
+}
+.navbar-nav .nav-link:hover {
+  background-color: #2A993C;
+}
+.navbar-nav .active {
+  background-color: #2A993C;
+}
+
+.myImage:hover {
+  cursor: pointer;
+  animation: 3s ease-in round_rotate infinite;
+}
+
+@keyframes round_rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.banner-text {
+  margin-top: 40px;
+}
+.banner-text .text-info {
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: 32px;
+}
+
+.button-container {
+  margin-top: 30px;
+}
+.button-container .custom-btn {
+  padding: 20px 5px;
+  text-decoration: none;
+  color: #fff;
+  background-color: rgba(252, 59, 0, 0.9254901961);
+  font-size: 22px;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  transition: 0.5s ease-out;
+}
+.button-container .custom-btn:hover {
+  cursor: pointer;
+  background-color: #FC3C00;
+}/*# sourceMappingURL=style.css.map */

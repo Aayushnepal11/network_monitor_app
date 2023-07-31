@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block header %}
+    {% include 'includes/nav.html' %}
+{% endblock header %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        {% for service in services %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <img class="img img-thumbnail" src="{{service.image.url}}" alt="{{service.title}}">
+                    <h5 class="card-title">{{service.title}}</h5>
+                    <p class="card-text">{{service.description}}</p>
+                    <a href="{{service.url}}" class="btn btn-primary">Try Now</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

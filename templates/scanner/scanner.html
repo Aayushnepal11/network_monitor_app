@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block header %}
+    {% include 'includes/nav.html' %}
+{% endblock header %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container mb-2">
+      <div class="accordion" id="accordionExample">
+        {% for report in data %}
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading{{forloop.counter}}">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{forloop.counter}}" aria-expanded="true" aria-controls="collapse{{forloop.counter}}">
+                {% for ip in report.values %}
+                    {% for key in ip.keys  %}
+                        {% if key in ip_address %}
+                            {{ key }}
+                        {% endif %}
+                    {% empty %}
+                    {{report.nmap.command_line | slice:"24:"}}
+                    {% endfor %}
+                    {% empty %}
+                    {% with report as ip_data %}
+                        {{ip_data.0.nmap.command_line | slice:"24:"}}
+                    {% endwith %}
+                {% endfor %}
+              </button>
+            </h2>
+            <div id="collapse{{forloop.counter}}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading{{forloop.counter}}" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                {% if 'command_line' in report.nmap %}
+                <pre>Run the Following Command on your:</pre>
+                <code>Terminal</code><p class="bg-dark text-white">ubuntu@ubuntu[~] sudo {{report.nmap.command_line}}</p>
+                {% if 'scanstats' in report.nmap %}
+                  <code>Date:{{report.nmap.scanstats.timestr}}</code>
+                  <code>Time Elapsed:{{report.nmap.scanstats.elapsed}}</code>
+                {% endif %}
+                {% if user.is_authenticated %}  
+                    {% if 'scan' in report.keys %}
+                      <div class="bg-dark text-white">
+                        {% for generated_data in report.scan.values %}
+                        <pre>Address Type: {{generated_data.addresses}}</pre>
+                        {% if 'tcp' in generated_data %}
+                          {% for key, value in generated_data.tcp.items %}
+                            <pre>Port Number: {{key}}</pre>
+                            <p>Information:
+                              {% for key,open_port_info in value.items  %}
+                                <pre>{{key}}:{{open_port_info}}</pre>
+                              {% endfor %} 
+                            </p>
+                          {% endfor %}
+                        {% endif %}
+                      {% endfor %}
+                      </div>
+                    {% endif %}
+                    {% else %}
+                    <div class="d-flex justify-content-center">
+                        <div class="col-md-5">
+                          <a class="btn btn-primary" href="">Login</a>
+                        </div>
+                    </div>
+                {% endif %}
+                {% else %}
+                    {{report}}
+                {% endif %}  
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+{% endblock content %}
