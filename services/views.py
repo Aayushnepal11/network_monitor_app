@@ -5,6 +5,9 @@ import ping3
 from scapy.layers.inet import IP, ICMP
 from scapy.sendrecv import sr
 import threading
+import string
+import random
+import hashlib
 
 
 # Create your views here.
@@ -73,3 +76,44 @@ class TraceRouteView(DetailView):
             thread.join()
 
         return results
+
+
+class RandomPasswordView(TemplateView):
+    template_name = "services/random_password.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["password"] = self.generate_password() 
+        context["password_hash"] = self.password_hash() 
+        return context
+    
+
+    def generate_password(self):
+        global password
+        global new_password
+        password = str()
+        new_password = str()
+        letters = [letter for letter in string.ascii_letters]
+        digits = [digit for digit in string.digits]
+        special_character = "()*&^%$#@!+-"
+        special_char = [schar for schar in special_character]
+        for _ in range(7):
+            password += random.choice(letters)
+        for _ in range(2):
+            password += random.choice(digits)
+        for _ in range(1):
+            password += random.choice(special_char)
+        
+        password = [passwd for passwd in password]
+        
+        password = random.sample(password, 10)
+        for passwd in password:
+            new_password += passwd
+        return new_password.encode('utf-8')
+
+    def password_hash(self):
+        password = hashlib.sha256()
+        password.update(self.generate_password())
+        return password.digest()
+
+
