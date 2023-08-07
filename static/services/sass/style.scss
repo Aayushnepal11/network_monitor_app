@@ -1,0 +1,83 @@
+.router{
+    display: flex;
+    width: 150px;
+    height: 100px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin: 5px auto;
+    position: relative;
+    align-items: center;
+    .body{
+        width: 120px;
+        height: 80px;
+        background-color: #fff;
+        margin: 0 auto;
+        position: relative;
+        .antena{
+            width: 5px;
+            height: 30px;
+            background-color: #101;
+            border-radius: 10px;
+            top: -30px;
+            position: absolute;
+            content: '';
+        }
+        .antena_2{
+            left: 90%;
+        }
+        .lights{
+            display: flex;
+            background-color: #f0f0f0;
+            width: 100px;
+            height: 20px;
+            justify-content: space-around;
+            position: absolute;
+            content: '';
+            top: 60%;
+            left: 10px;
+            bottom: 5px;
+            border-radius: 50px;
+            .light{
+                background-color: grey;
+                width: 10px;
+                height: 10px;
+                border-radius: 100%;
+                top: 5px;
+                position: relative;
+                opacity: .7;
+                animation: glow .8s infinite;
+            }
+        }
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        opacity: 1;
+        background-color: yellow;
+        transform: scale(1);
+    }
+    50%{
+        opacity: .8;
+        background-color: rgba(255, 255, 0, 0.651);
+        transform:  scale(1.2);
+    }
+}
+
+.login-modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    .login-content{
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+    }
+}

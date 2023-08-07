@@ -80,11 +80,14 @@ class TraceRouteView(DetailView):
 
 class RandomPasswordView(TemplateView):
     template_name = "services/random_password.html"
+    
 
     def get_context_data(self, **kwargs):
+        password_list = []
         context = super().get_context_data(**kwargs)
-        context["password"] = self.generate_password() 
-        context["password_hash"] = self.password_hash() 
+        for _ in range(10):
+            password_list.append(self.generate_password())
+        context["password_list"] = password_list
         return context
     
 
@@ -109,11 +112,6 @@ class RandomPasswordView(TemplateView):
         password = random.sample(password, 10)
         for passwd in password:
             new_password += passwd
-        return new_password.encode('utf-8')
-
-    def password_hash(self):
-        password = hashlib.sha256()
-        password.update(self.generate_password())
-        return password.digest()
+        return new_password
 
 
