@@ -6,12 +6,14 @@ loginButton.addEventListener('click',function(){
     loginModal.style.flexDirection='column'; 
 }); 
 
+
+
 document.getElementById('loginForm').addEventListener('submit', function(e){
     e.preventDefault();
 
 
     setTimeout(function(){
-        alert('Login Successfully');
+        alert("Login Successfully");
         document.getElementById('loginModal').style.display='none';
     }, 1000);
 
